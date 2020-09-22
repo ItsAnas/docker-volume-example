@@ -1,0 +1,17 @@
+version: '3'
+services:
+    serializer:
+        container_name: serializer
+        build:
+            context: ./serializer
+            dockerfile: Dockerfile
+        ports:
+        - "5000:5000"
+    deserializer:
+        container_name: deserializer
+        build:
+            context: ./deserializer
+            dockerfile: Dockerfile
+        ports:
+        - "6789:5000"
+    
