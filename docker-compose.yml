@@ -1,17 +1,26 @@
 version: '3'
+
+volumes:
+    web_data:
+      external: true  
+
 services:
     serializer:
         container_name: serializer
         build:
             context: ./serializer
             dockerfile: Dockerfile
+        volumes: 
+            - web_data:/usr/share/toast/
         ports:
-        - "5000:5000"
+            - "5000:5000"
     deserializer:
         container_name: deserializer
         build:
             context: ./deserializer
             dockerfile: Dockerfile
+        volumes: 
+            - web_data:/usr/share/toast/        
         ports:
-        - "6789:5000"
+            - "6789:5000"
     

@@ -2,6 +2,7 @@ import time
 
 import redis
 from flask import Flask
+from subprocess import Popen, PIPE
 
 app = Flask(__name__)
 cache = redis.Redis(host='redis', port=6379)
@@ -20,5 +21,11 @@ def get_hit_count():
 
 @app.route('/')
 def hello():
-    #count = get_hit_count()
-    return 'Hello World! I have been seen at least 1 time.\n'
+    s = "not found"
+    try:
+        g = open("/usr/share/toast/demofile2.txt", "r")
+        s = g.read()
+    except:
+        pass
+    #return HttpResponse(output)
+    return s
